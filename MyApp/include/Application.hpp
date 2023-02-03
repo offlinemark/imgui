@@ -9,8 +9,9 @@
 namespace myapp
 {
 
-struct Application
+class Application
 {
+  public:
     void draw()
     {
         drawUi(mModel);
@@ -45,6 +46,7 @@ struct Application
         std::this_thread::sleep_for(std::chrono::milliseconds{framesPerSecond});
     }
 
+  private:
     Model mModel;
 };
 

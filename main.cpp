@@ -83,6 +83,8 @@ template <typename T> int runApp(T appFunc, Model &model)
 
         glfwSwapBuffers(window);
     }
+
+    return 0;
 }
 
 int main()

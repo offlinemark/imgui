@@ -1,5 +1,5 @@
-#include "MainView.hpp"
-#include "Logger.hpp"
+#include "MyApp/MainView.hpp"
+#include "MyApp/Logger.hpp"
 
 #include "imgui.h"
 

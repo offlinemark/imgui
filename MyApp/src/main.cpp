@@ -1,9 +1,12 @@
-#include <iostream>
-
-#include "ImguiWrapper/ImguiWrapper.hpp"
 
 #include "MainView.hpp"
 #include "Model.hpp"
+
+#include "ImguiWrapper/ImguiWrapper.hpp"
+
+#include <chrono>
+#include <iostream>
+#include <thread>
 
 namespace myapp
 {
@@ -36,6 +39,10 @@ void mainLoop(Model &model)
         ImGui::ShowDemoWindow(&model.showDemoWindow);
 
     // ImGui::ShowMetricsWindow();
+
+    static int framesPerSecond;
+    ImGui::SliderInt("sleep time per frame", &framesPerSecond, 0, 1000);
+    std::this_thread::sleep_for(std::chrono::milliseconds{framesPerSecond});
 }
 
 } // namespace myapp

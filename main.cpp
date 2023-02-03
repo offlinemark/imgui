@@ -7,7 +7,6 @@
 #define GL_SILENCE_DEPRECATION
 
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
-
 #include <OpenGl/gl.h>
 
 static void glfw_error_callback(int error, const char *description)
@@ -20,8 +19,7 @@ struct Model
     bool show_demo_window = true;
 };
 
-template <typename T>
-int runApp(T appFunc, Model &model)
+template <typename T> int runApp(T appFunc, Model &model)
 {
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -56,10 +54,14 @@ int runApp(T appFunc, Model &model)
     while (!glfwWindowShouldClose(window))
     {
         // Poll and handle events (inputs, window resize, etc.)
-        // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
-        // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application, or clear/overwrite your copy of the mouse data.
-        // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application, or clear/overwrite your copy of the keyboard data.
-        // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+        // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to
+        // tell if dear imgui wants to use your inputs.
+        // - When io.WantCaptureMouse is true, do not dispatch mouse input data to
+        // your main application, or clear/overwrite your copy of the mouse data.
+        // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input
+        // data to your main application, or clear/overwrite your copy of the
+        // keyboard data. Generally you may always pass all inputs to dear imgui,
+        // and hide them from your application based on those two flags.
         glfwPollEvents();
 
         // Start the Dear ImGui frame
@@ -74,7 +76,8 @@ int runApp(T appFunc, Model &model)
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w,
+                     clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -85,10 +88,13 @@ int runApp(T appFunc, Model &model)
 int main()
 {
     Model model;
-    return runApp([](Model &model)
-                  {
-                      // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-                      if (model.show_demo_window)
-                          ImGui::ShowDemoWindow(&model.show_demo_window); },
-                  model);
+    return runApp(
+        [](Model &model) {
+            // 1. Show the big demo window (Most of the sample code is in
+            // ImGui::ShowDemoWindow()! You can browse its code to learn more about
+            // Dear ImGui!).
+            if (model.show_demo_window)
+                ImGui::ShowDemoWindow(&model.show_demo_window);
+        },
+        model);
 }

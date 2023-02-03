@@ -14,12 +14,7 @@ static void glfw_error_callback(int error, const char *description)
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-struct Model
-{
-    bool show_demo_window = true;
-};
-
-template <typename T> int runApp(T appFunc, Model &model)
+template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFunc, ModelType &model)
 {
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -86,6 +81,11 @@ template <typename T> int runApp(T appFunc, Model &model)
 
     return 0;
 }
+
+struct Model
+{
+    bool show_demo_window = true;
+};
 
 int main()
 {

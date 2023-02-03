@@ -87,16 +87,46 @@ struct Model
     bool show_demo_window = true;
 };
 
+void mainLoop(Model &model)
+{
+    {
+        ImGui::Begin("Microwave Simulator");
+
+        ImGui::Button("Start");
+        ImGui::Button("Stop");
+        ImGui::Button("+30 sec");
+
+        ImGui::End();
+    }
+
+    {
+        static bool isCollapsed = true;
+        ImGui::SetNextWindowCollapsed(false, ImGuiCond_FirstUseEver);
+        isCollapsed = ImGui::Begin("xDebug", nullptr, 0);
+
+        ImGui::Checkbox("Demo Window", &model.show_demo_window); // Edit bools storing our window open/close state
+        ImGui::Text("Hello world");                              // Edit bools storing our window open/close state
+
+        if (ImGui::Button("my exciting button")) // Buttons return true when clicked (most widgets return true when
+                                                 // edited/activated)
+        {
+            std::cout << "hellox\n";
+        }
+
+        ImGui::End();
+    }
+
+    // 1. Show the big demo window (Most of the sample code is in
+    // ImGui::ShowDemoWindow()! You can browse its code to learn more about
+    // Dear ImGui!).
+    if (model.show_demo_window)
+        ImGui::ShowDemoWindow(&model.show_demo_window);
+
+    ImGui::ShowMetricsWindow();
+}
+
 int main()
 {
     Model model;
-    return runApp(
-        [](Model &model) {
-            // 1. Show the big demo window (Most of the sample code is in
-            // ImGui::ShowDemoWindow()! You can browse its code to learn more about
-            // Dear ImGui!).
-            if (model.show_demo_window)
-                ImGui::ShowDemoWindow(&model.show_demo_window);
-        },
-        model);
+    return runApp(mainLoop, model);
 }

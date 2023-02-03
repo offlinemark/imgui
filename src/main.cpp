@@ -105,5 +105,5 @@ void mainLoop(Model &model)
 int main()
 {
     Model model;
-    return runApp(mainLoop, model);
+    return imgui_wrapper::runApp(mainLoop, model);
 }

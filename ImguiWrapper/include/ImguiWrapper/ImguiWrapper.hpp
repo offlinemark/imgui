@@ -9,10 +9,16 @@
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 #include <OpenGl/gl.h>
 
+namespace imgui_wrapper
+{
+
+namespace
+{
 void glfwErrorCallback(int error, const char *description)
 {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
+} // namespace
 
 template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFunc, ModelType &model)
 {
@@ -81,3 +87,5 @@ template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFu
 
     return 0;
 }
+
+} // namespace imgui_wrapper

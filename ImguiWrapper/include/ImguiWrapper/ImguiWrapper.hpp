@@ -9,6 +9,8 @@
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 #include <OpenGl/gl.h>
 
+#include <ostream>
+
 namespace imgui_wrapper
 {
 

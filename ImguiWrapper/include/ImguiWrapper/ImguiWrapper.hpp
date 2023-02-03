@@ -9,7 +9,7 @@
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
 #include <OpenGl/gl.h>
 
-static void glfw_error_callback(int error, const char *description)
+void glfwErrorCallback(int error, const char *description)
 {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
@@ -17,7 +17,7 @@ static void glfw_error_callback(int error, const char *description)
 template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFunc, ModelType &model)
 {
     // Setup window
-    glfwSetErrorCallback(glfw_error_callback);
+    glfwSetErrorCallback(glfwErrorCallback);
     if (!glfwInit())
         return 1;
 

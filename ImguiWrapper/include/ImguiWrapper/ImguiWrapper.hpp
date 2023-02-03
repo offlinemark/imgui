@@ -20,7 +20,8 @@ void glfwErrorCallback(int error, const char *description)
 }
 } // namespace
 
-template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFunc, ModelType &model)
+template <typename AppFuncType, typename ModelType>
+int runApp(const char *windowName, AppFuncType appFunc, ModelType &model)
 {
     // Setup window
     glfwSetErrorCallback(glfwErrorCallback);
@@ -32,7 +33,7 @@ template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFu
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // 3.2+ only
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);           // Required on Mac
 
-    GLFWwindow *window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(1280, 720, windowName, NULL, NULL);
     if (window == NULL)
         return 1;
 

@@ -22,12 +22,9 @@ void glfwErrorCallback(int error, const char *description)
 }
 } // namespace
 
-// Create a window named @windowName and run a Imgui main loop. Take the given model
-// and pass it into the callback.
-//
-// void appFunc(Model& model);
-template <typename AppFuncType, typename ModelType>
-int runApp(const char *windowName, AppFuncType appFunc, ModelType &model)
+// Create a window named @windowName and run a Imgui main loop. Call app.draw()
+// once per loop.
+template <typename AppType> int runApp(const char *windowName, AppType &app)
 {
     // Setup window
     glfwSetErrorCallback(glfwErrorCallback);
@@ -77,7 +74,7 @@ int runApp(const char *windowName, AppFuncType appFunc, ModelType &model)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        appFunc(model);
+        app.draw();
 
         // Rendering
         ImGui::Render();

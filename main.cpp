@@ -84,7 +84,7 @@ template <typename AppFuncType, typename ModelType> int runApp(AppFuncType appFu
 
 struct Model
 {
-    bool show_demo_window = true;
+    bool showDemoWindow = true;
 };
 
 void mainLoop(Model &model)
@@ -104,8 +104,8 @@ void mainLoop(Model &model)
         ImGui::SetNextWindowCollapsed(false, ImGuiCond_FirstUseEver);
         isCollapsed = ImGui::Begin("xDebug", nullptr, 0);
 
-        ImGui::Checkbox("Demo Window", &model.show_demo_window); // Edit bools storing our window open/close state
         ImGui::Text("Hello world");                              // Edit bools storing our window open/close state
+        ImGui::Checkbox("Demo Window", &model.showDemoWindow); // Edit bools storing our window open/close state
 
         if (ImGui::Button("my exciting button")) // Buttons return true when clicked (most widgets return true when
                                                  // edited/activated)
@@ -119,8 +119,8 @@ void mainLoop(Model &model)
     // 1. Show the big demo window (Most of the sample code is in
     // ImGui::ShowDemoWindow()! You can browse its code to learn more about
     // Dear ImGui!).
-    if (model.show_demo_window)
-        ImGui::ShowDemoWindow(&model.show_demo_window);
+    if (model.showDemoWindow)
+        ImGui::ShowDemoWindow(&model.showDemoWindow);
 
     ImGui::ShowMetricsWindow();
 }

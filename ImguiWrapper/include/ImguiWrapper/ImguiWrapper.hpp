@@ -20,8 +20,11 @@ void glfwErrorCallback(int error, const char *description)
 }
 } // namespace
 
-template <typename AppFuncType, typename ModelType>
-int runApp(const char *windowName, AppFuncType appFunc, ModelType &model)
+// Create a window named @windowName and run a Imgui main loop. Instantiate a Model
+// and pass that to the callback whose signature is
+//
+// void appFunc(Model& model);
+template <typename AppFuncType, typename ModelType> int runApp(const char *windowName, AppFuncType appFunc)
 {
     // Setup window
     glfwSetErrorCallback(glfwErrorCallback);
@@ -52,6 +55,8 @@ int runApp(const char *windowName, AppFuncType appFunc, ModelType &model)
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+    Model model;
 
     while (!glfwWindowShouldClose(window))
     {

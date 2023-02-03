@@ -5,6 +5,9 @@
 #include "MainView.hpp"
 #include "Model.hpp"
 
+namespace myapp
+{
+
 void mainLoop(Model &model)
 {
     drawUi(model);
@@ -35,8 +38,9 @@ void mainLoop(Model &model)
     // ImGui::ShowMetricsWindow();
 }
 
+} // namespace myapp
+
 int main()
 {
-    Model model;
-    return imgui_wrapper::runApp("my test app", mainLoop, model);
+    return imgui_wrapper::runApp("my test app", myapp::mainLoop);
 }

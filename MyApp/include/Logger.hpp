@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 
+namespace myapp
+{
+
 // TODO: Port to ImGuiTextBuffer
 class Logger
 {
@@ -24,3 +27,5 @@ class Logger
 inline Logger gLogger;
 
 void drawLogger();
+
+} // namespace myapp

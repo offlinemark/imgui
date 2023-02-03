@@ -42,5 +42,6 @@ void mainLoop(Model &model)
 
 int main()
 {
-    return imgui_wrapper::runApp("my test app", myapp::mainLoop);
+    myapp::Model model;
+    return imgui_wrapper::runApp("my test app", myapp::mainLoop, model);
 }

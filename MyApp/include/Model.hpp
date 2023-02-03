@@ -1,5 +1,8 @@
 #pragma once
 
+namespace myapp
+{
+
 struct Model
 {
 
@@ -7,3 +10,5 @@ struct Model
 
     bool showDemoWindow = true;
 };
+
+} // namespace myapp

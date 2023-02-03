@@ -3,6 +3,9 @@
 
 #include "imgui.h"
 
+namespace myapp
+{
+
 namespace
 {
 
@@ -32,3 +35,5 @@ void drawUi(Model &model)
     drawMicrowaveWindow(model);
     drawLogger();
 }
+
+} // namespace myapp

@@ -2,6 +2,9 @@
 
 #include "imgui.h"
 
+namespace myapp
+{
+
 void drawLogger()
 {
     ImGui::Begin("Logger");
@@ -16,3 +19,5 @@ void drawLogger()
 
     ImGui::End();
 }
+
+} // namespace myapp

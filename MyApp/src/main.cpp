@@ -1,76 +1,9 @@
 #include <iostream>
-#include <string>
-#include <vector>
 
 #include "ImguiWrapper/ImguiWrapper.hpp"
 
-// TODO: Port to ImGuiTextBuffer
-class Logger
-{
-  public:
-    void log(std::string text)
-    {
-        mLogLines.push_back(std::move(text));
-    }
-
-    const std::vector<std::string> &lines()
-    {
-        return mLogLines;
-    }
-
-  private:
-    std::vector<std::string> mLogLines;
-};
-
-struct Model
-{
-
-    int mCookTime = 0;
-
-    bool showDemoWindow = true;
-};
-
-Logger gLogger;
-
-void drawLogger(Model &model)
-{
-    ImGui::Begin("Logger");
-    for (const auto &line : gLogger.lines())
-    {
-        ImGui::Text("%s", line.c_str());
-    }
-
-    if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
-        ImGui::SetScrollHereY(1.0f);
-    // ImGui::SetScrollHereY(1.0f);
-
-    ImGui::End();
-}
-
-auto makeLogButton(Logger &logger, const char *text)
-{
-    if (ImGui::Button(text))
-    {
-        logger.log(std::string("Press button: ") + text);
-    }
-}
-
-void drawMicrowaveWindow(Model &model)
-{
-    ImGui::Begin("Microwave Simulator");
-
-    makeLogButton(gLogger, "Start");
-    makeLogButton(gLogger, "Stop");
-    makeLogButton(gLogger, "+30 sec");
-
-    ImGui::End();
-}
-
-void drawUi(Model &model)
-{
-    drawMicrowaveWindow(model);
-    drawLogger(model);
-}
+#include "MainView.hpp"
+#include "Model.hpp"
 
 void mainLoop(Model &model)
 {

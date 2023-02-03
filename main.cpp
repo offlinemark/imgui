@@ -15,7 +15,13 @@ static void glfw_error_callback(int error, const char *description)
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-int main()
+struct Model
+{
+    bool show_demo_window = true;
+};
+
+template <typename T>
+int runApp(T appFunc, Model &model)
 {
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -45,7 +51,6 @@ int main()
     const char *glsl_version = "#version 150";
     ImGui_ImplOpenGL3_Init(glsl_version);
 
-    bool show_demo_window = true;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     while (!glfwWindowShouldClose(window))
@@ -62,9 +67,7 @@ int main()
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-        if (show_demo_window)
-            ImGui::ShowDemoWindow(&show_demo_window);
+        appFunc(model);
 
         // Rendering
         ImGui::Render();
@@ -77,4 +80,15 @@ int main()
 
         glfwSwapBuffers(window);
     }
+}
+
+int main()
+{
+    Model model;
+    return runApp([](Model &model)
+                  {
+                      // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+                      if (model.show_demo_window)
+                          ImGui::ShowDemoWindow(&model.show_demo_window); },
+                  model);
 }

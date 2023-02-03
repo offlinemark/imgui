@@ -17,8 +17,6 @@ auto makeLogButton(Logger &logger, const char *text)
     }
 }
 
-} // namespace
-
 void drawMicrowaveWindow(Model &model)
 {
     ImGui::Begin("Microwave Simulator");
@@ -29,6 +27,8 @@ void drawMicrowaveWindow(Model &model)
 
     ImGui::End();
 }
+
+} // namespace
 
 void drawUi(Model &model)
 {

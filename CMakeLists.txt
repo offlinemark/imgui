@@ -21,5 +21,4 @@ target_include_directories(
 )
 target_link_libraries(imgui glfw OpenGL::GL)
 
-add_executable(app main.cpp)
-target_link_libraries(app imgui glfw)
+add_subdirectory(src)

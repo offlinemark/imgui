@@ -41,9 +41,15 @@ class Application
 
         // ImGui::ShowMetricsWindow();
 
-        static int framesPerSecond;
-        ImGui::SliderInt("sleep time per frame", &framesPerSecond, 0, 1000);
-        std::this_thread::sleep_for(std::chrono::milliseconds{framesPerSecond});
+        static int sleepTime = 1000 / 33;
+        ImGui::SliderInt("sleep time per frame", &sleepTime, 0, 1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds{sleepTime});
+
+        if (sleepTime > 100)
+        {
+            std::this_thread::sleep_for(std::chrono::seconds{10});
+            sleepTime = 30;
+        }
     }
 
   private:

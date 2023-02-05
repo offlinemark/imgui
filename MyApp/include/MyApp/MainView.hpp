@@ -20,7 +20,7 @@ template <typename F> auto makeLogButton(Logger &logger, const char *text, F fun
     }
 }
 
-struct View
+struct MicrowaveView
 {
     void tick()
     {
@@ -73,10 +73,13 @@ struct View
 
 struct MainView
 {
+    void tick(Model &model)
+    {
+        mView.tick();
+    }
+
     void draw(Model &model)
     {
-        // drawUi(model);
-        mView.tick();
         mView.draw();
         drawLogger();
 
@@ -116,7 +119,7 @@ struct MainView
         }
     }
 
-    detail::View mView;
+    detail::MicrowaveView mView;
 };
 
 void drawUi(Model &model);

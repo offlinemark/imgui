@@ -39,6 +39,7 @@ class Application
 
     void tick()
     {
+        mMainView.tick(mModel);
         mMainView.draw(mModel);
     }
 

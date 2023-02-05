@@ -51,7 +51,12 @@ struct MicrowaveView
             using namespace std::chrono_literals;
             mNextSecond = std::chrono::steady_clock::now() + 1s;
         });
-        makeLogButton(gLogger, "Stop", [&]() { isRunning = false; });
+
+        if (mIsRunning)
+        {
+            makeLogButton(gLogger, "Stop", [&]() { mIsRunning = false; });
+        }
+
         makeLogButton(gLogger, "Reset", [&]() { mCookTime = 0; });
         makeLogButton(gLogger, "+30 sec", [&]() { mCookTime += 30; });
 

@@ -1,4 +1,5 @@
 #include "MainView.hpp"
+#include "MyApp/SafeQueue.hpp"
 
 #include "imgui.h"
 
@@ -12,6 +13,33 @@ namespace myapp
 class Application
 {
   public:
+    Application()
+    {
+        std::cout << "ctor\n";
+        mThread = std::thread([&]() {
+            std::cout << "from other thread\n";
+
+            while (true)
+            {
+                const auto message = mQueue.pop();
+                if (message == Message::quit)
+                {
+                    break;
+                }
+            }
+
+            std::cout << "thread exit\n";
+        });
+    }
+
+    ~Application()
+    {
+        std::cout << "dtor\n";
+        mQueue.push(Message::quit);
+        mThread.join();
+        std::cout << "dtor2\n";
+    }
+
     void draw()
     {
         drawUi(mModel);
@@ -54,6 +82,14 @@ class Application
 
   private:
     Model mModel;
+
+    std::thread mThread;
+
+    enum class Message
+    {
+        quit
+    };
+    SafeQueue<Message> mQueue;
 };
 
 } // namespace myapp

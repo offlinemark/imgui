@@ -24,12 +24,12 @@ struct MicrowaveView
 {
     void tick()
     {
-        if (isRunning)
+        if (mIsRunning)
         {
             if (mCookTime <= 0)
             {
                 gLogger.log("cooking finished\n");
-                isRunning = false;
+                mIsRunning = false;
             }
             if (std::chrono::steady_clock::now() >= mNextSecond)
             {
@@ -46,7 +46,7 @@ struct MicrowaveView
         ImGui::Begin("Microwave Simulator");
 
         makeLogButton(gLogger, "Start", [&]() {
-            isRunning = true;
+            mIsRunning = true;
 
             using namespace std::chrono_literals;
             mNextSecond = std::chrono::steady_clock::now() + 1s;
@@ -62,10 +62,10 @@ struct MicrowaveView
 
     int mCookTime = 10;
 
-    bool isRunning = false;
 
     bool showDemoWindow = true;
 
+    bool mIsRunning = false;
     std::chrono::time_point<std::chrono::steady_clock> mNextSecond;
 };
 

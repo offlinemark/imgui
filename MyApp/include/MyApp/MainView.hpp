@@ -66,10 +66,6 @@ struct MicrowaveView
     }
 
     int mCookTime = 10;
-
-
-    bool showDemoWindow = true;
-
     bool mIsRunning = false;
     std::chrono::time_point<std::chrono::steady_clock> mNextSecond;
 };

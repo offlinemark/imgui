@@ -29,7 +29,7 @@ struct MicrowaveView
 
         if (mIsRunning)
         {
-            if (mCookTime <= 0)
+            if (mCookTime == 0)
             {
                 gLogger.log("cooking finished\n");
                 mIsRunning = false;

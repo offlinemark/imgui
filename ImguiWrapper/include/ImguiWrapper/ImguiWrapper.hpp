@@ -22,7 +22,7 @@ void glfwErrorCallback(int error, const char *description)
 }
 } // namespace
 
-// Create a window named @windowName and run a Imgui main loop. Call app.draw()
+// Create a window named @windowName and run a Imgui main loop. Call app.tick()
 // once per loop.
 template <typename AppType> int runApp(const char *windowName, AppType &app)
 {
@@ -74,7 +74,7 @@ template <typename AppType> int runApp(const char *windowName, AppType &app)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        app.draw();
+        app.tick();
 
         // Rendering
         ImGui::Render();

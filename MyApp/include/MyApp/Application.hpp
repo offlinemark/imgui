@@ -1,4 +1,5 @@
-#include "MainView.hpp"
+#include "MyApp/MainView.hpp"
+
 #include "MyApp/SafeQueue.hpp"
 
 #include "imgui.h"
@@ -40,8 +41,10 @@ class Application
         std::cout << "dtor2\n";
     }
 
-    void draw()
+    void tick()
     {
+
+        mMainView.draw(mModel);
         drawUi(mModel);
 
         {
@@ -82,6 +85,7 @@ class Application
 
   private:
     Model mModel;
+    MainView mMainView;
 
     std::thread mThread;
 

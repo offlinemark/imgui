@@ -3,6 +3,7 @@
 
 #include "imgui.h"
 
+#include <assert.h>
 #include <chrono>
 #include <iostream>
 #include <thread>
@@ -24,6 +25,8 @@ struct MicrowaveView
 {
     void tick()
     {
+        assert(mCookTime >= 0);
+
         if (mIsRunning)
         {
             if (mCookTime <= 0)
@@ -60,7 +63,13 @@ struct MicrowaveView
         makeLogButton(gLogger, "Reset", [&]() { mCookTime = 0; });
         makeLogButton(gLogger, "+30 sec", [&]() { mCookTime += 30; });
 
-        ImGui::InputInt("cook time", &mCookTime);
+        if (ImGui::InputInt("cook time", &mCookTime))
+        {
+            if (mCookTime < 0)
+            {
+                mCookTime = 0;
+            }
+        }
 
         ImGui::End();
     }

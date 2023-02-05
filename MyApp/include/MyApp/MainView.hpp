@@ -132,6 +132,4 @@ struct MainView
     detail::MicrowaveView mView;
 };
 
-void drawUi(Model &model);
-
 } // namespace myapp
